@@ -28,39 +28,42 @@ if uploaded_file:
     df = pd.read_excel(uploaded_file)
 
     # Check for required columns
-    required_columns = ["Category", "Budget", "Actual"]
+    required_columns = ["Tahun", "Detail Akun", "Aanggaran", "Realisasi"]
     if not all(col in df.columns for col in required_columns):
-        st.error("⚠️ The uploaded file must contain 'Category', 'Budget', and 'Actual' columns!")
+        st.error("⚠️ File harus memiliki kolom: Tahun, Detail Akun, Anggaran, Realisasi!")
         st.stop()
 
     # Calculate Variance and Variance Percentage
-    df["Variance"] = df["Actual"] - df["Budget"]
-    df["Variance %"] = (df["Variance"] / df["Budget"]) * 100
+    df["Variance"] = df["Realisasi"] - df["Anggaran"]
+    df["Variance %"] = (df["Variance"] / df["Anggaran"]) * 100
 
     # Display data preview
     st.subheader("📊 Data Preview with Variance Calculation")
     st.dataframe(df)
 
     # Plot Variance Analysis
-    st.subheader("📈 Budget vs. Actual Variance Analysis")
+    st.subheader("📈 Budget vs. Actual Variance Analysis (per Detail Akun)")
     
     fig_bar = px.bar(
         df,
-        x="Category",
+        x="Detail Akun",
         y="Variance",
         color="Variance",
-        title="📊 Variance by Category",
+        title="📊 Variance by Detail Akun",
         text_auto=".2s",
         color_continuous_scale=["red", "yellow", "green"],
     )
     st.plotly_chart(fig_bar)
 
+    # Trend per Tahun
+    st.subheader("📉 Budget vs. Actual Performance (per Tahun)")
     fig_line = px.line(
         df,
-        x="Category",
-        y=["Budget", "Actual"],
+        x="Tahun",
+        y=["Anggaran", "Realisasi"],
+        color="Detail Akun",
         markers=True,
-        title="📉 Budget vs. Actual Performance",
+        title="📉 Budget vs. Actual Performance by Tahun & Detail Akun",
     )
     st.plotly_chart(fig_line)
 
