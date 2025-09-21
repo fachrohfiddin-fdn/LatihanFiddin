@@ -16,10 +16,9 @@ if not GROQ_API_KEY:
 # Streamlit App UI
 st.set_page_config(page_title="Budget vs. Actuals AI", page_icon="📊", layout="wide")
 st.title("📊 Budget vs. Actuals AI – Variance Analysis & Commentary")
-st.caption("Aplikasi berbasis AI ini merupakan  alat Analisis perbandingan antara anggaran dan realisasi APBD dengan AI insight otomatis")
-st.caption("dan juga sebagai sarana pembelajaran untuk dosen di mata kuliah sektor publik")
-st.caption("Untuk mencoba aplikasi ini, upload data yang format kolomnya yaitu TAHUN, DETAIL AKUN, ANGGARAN DAN REALISASI")
-st.write("Upload your Budget vs. Actuals file and get AI-driven financial insights!")
+st.caption("Aplikasi berbasis AI ini merupakan alat analisis perbandingan antara anggaran dan realisasi dengan AI insight otomatis")
+st.caption("Format data wajib memiliki kolom: **Tahun, Detail Akun, Anggaran, Realisasi**")
+st.write("Upload file Excel dan dapatkan analisis otomatis dari AI!")
 
 # File uploader
 uploaded_file = st.file_uploader("📂 Upload your dataset (Excel format)", type=["xlsx"])
@@ -34,15 +33,15 @@ if uploaded_file:
         st.error("⚠️ File harus memiliki kolom: Tahun, Detail Akun, Anggaran, Realisasi!")
         st.stop()
 
-    # Calculate Variance and Variance Percentage
+    # Hitung Variance
     df["Variance"] = df["Realisasi"] - df["Anggaran"]
     df["Variance %"] = (df["Variance"] / df["Anggaran"]) * 100
 
-    # Display data preview
+    # Tampilkan data preview
     st.subheader("📊 Data Preview with Variance Calculation")
     st.dataframe(df)
 
-    # Plot Variance Analysis
+    # Analisis Variance per Detail Akun
     st.subheader("📈 Budget vs. Actual Variance Analysis (per Detail Akun)")
     
     fig_bar = px.bar(
@@ -83,7 +82,7 @@ if uploaded_file:
 
     st.write(response.choices[0].message.content)
 
-    # AI Chat - Users Can Ask Questions
+    # AI Chat
     st.subheader("🗣️ Chat with AI About Variance Analysis")
 
     user_query = st.text_input("🔍 Ask the AI about your variance data:")
