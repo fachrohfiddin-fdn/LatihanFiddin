@@ -15,8 +15,9 @@ if not GROQ_API_KEY:
 
 # Streamlit App UI
 st.set_page_config(page_title="Budget vs. Actuals AI", page_icon="📊", layout="wide")
-st.title("📊 Budget vs. Actuals AI – Variance Analysis & Commentary ala fiddin")
-st.write("Silahkan Upload your Budget vs. Actuals file and get AI-driven financial insights!")
+st.title("📊 Budget vs. Actuals AI – Variance Analysis & Commentary")
+st.caption("Analisis perbandingan antara anggaran dan realisasi dengan AI insight otomatis")
+st.write("Upload your Budget vs. Actuals file and get AI-driven financial insights!")
 
 # File uploader
 uploaded_file = st.file_uploader("📂 Upload your dataset (Excel format)", type=["xlsx"])
