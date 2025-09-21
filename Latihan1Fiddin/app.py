@@ -15,9 +15,10 @@ if not GROQ_API_KEY:
 
 # Streamlit App UI
 st.set_page_config(page_title="Budget vs. Actuals AI", page_icon="📊", layout="wide")
-st.title("📊 Budget vs. Actuals AI – Variance Analysis & Commentary Spesial data Data Realisasi APBD")
-st.caption("Aplikasi berbasis AI ini merupakan sebagai alat Analisis perbandingan antara anggaran dan realisasi dengan AI insight otomatis")
-st.caption("Untuk mencoba aplikasi ini, upload data yang format kolomnya yaitu CATAGORI, BUDGET, AKTUAL")
+st.title("📊 Budget vs. Actuals AI – Variance Analysis & Commentary")
+st.caption("Aplikasi berbasis AI ini merupakan  alat Analisis perbandingan antara anggaran dan realisasi APBD dengan AI insight otomatis")
+st.caption("dan juga sebagai sarana pembelajaran untuk dosen di mata kuliah sektor publik")
+st.caption("Untuk mencoba aplikasi ini, upload data yang format kolomnya yaitu TAHUN, DETAIL AKUN, ANGGARAN DAN REALISASI")
 st.write("Upload your Budget vs. Actuals file and get AI-driven financial insights!")
 
 # File uploader
