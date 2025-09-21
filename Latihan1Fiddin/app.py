@@ -29,7 +29,7 @@ if uploaded_file:
     df = pd.read_excel(uploaded_file)
 
     # Check for required columns
-    required_columns = ["Tahun", "Detail Akun", "Aanggaran", "Realisasi"]
+    required_columns = ["Tahun", "Detail Akun", "Anggaran", "Realisasi"]
     if not all(col in df.columns for col in required_columns):
         st.error("⚠️ File harus memiliki kolom: Tahun, Detail Akun, Anggaran, Realisasi!")
         st.stop()
